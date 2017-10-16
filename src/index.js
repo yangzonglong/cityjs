@@ -23,7 +23,8 @@ const get_offset = function(dom) {
 	}
 }
 
-const get_dom = id => document.querySelector(id)
+const get_dom = id => typeof id === 'string' ? document.querySelector(id) : id;
+
 
 const handle_xy = (x, y) => {
 	return {
