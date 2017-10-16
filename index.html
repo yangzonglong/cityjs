@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			
+			body {
+				background: #F7F7F7;
+				padding: 100px;
+			}
+		</style>
+		<link href="dist/city.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<input id="ipt1" value="上海@市辖区" style="margin-bottom: 100px;" />
+		<input id="ipt2" value="上海-市辖区" style="margin-bottom: 100px;" />
+		<script type="text/javascript" src="dist/city.min.js"></script>
+		<script>
+			const init_data = {
+				'热门城市': {
+					childs: [221,198],
+					is_key: false
+				}
+			}
+			Zlcity.init_data(init_data)
+			
+			// 基本使用
+			new Zlcity('#ipt2')
+			
+			// 高级使用
+			new Zlcity('#ipt1', {
+				/*修正控件位置
+				 * 基于ipt1
+				 */
+				xy: function(x, y) {
+					return {
+						x,
+						y: y + 20
+					}
+				},
+				/**
+				 * 自定义输出
+				 * is_ready 用于处理 value值存在但自定义值不存在，这种情况会出现一些问题,chrome opera 浏览器后退会出现这种情况
+				 * ids 为用户选择的城市id，数组类型，从父到子
+				 */
+				set: function(is_ready,ids) {
+					const dom = this.dom;
+					if(!is_ready){
+						dom.dataset.abcd = ids.join('-');
+						dom.value = this.fids_chinese(ids).join('@');
+					}else{ // 浏览器回退
+						const values = dom.value.split('@');
+						dom.dataset.abcd = this.ids(values).join('-')
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>
