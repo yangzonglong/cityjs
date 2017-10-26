@@ -61,15 +61,15 @@ const bind_event = function() {
 			show.bind(that)(that.x, that.y)
 		}
 	})
-	// this.dom.addEventListener('blur', function() {
-	// 	if(!get_move_range()) {
-	// 		hide()
-	// 	} else {
-	// 		setTimeout(function() {
-	// 			if(get_move_range()) this.focus();
-	// 		}.bind(this), 200)
-	// 	}
-	// })
+	this.dom.addEventListener('blur', function() {
+		if(!get_move_range()) {
+			hide()
+		} else {
+			setTimeout(function() {
+				if(get_move_range()) this.focus();
+			}.bind(this), 200)
+		}
+	})
 }
 
 class Zlcity {
