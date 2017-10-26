@@ -96,8 +96,11 @@ const init_event = function() {
 		}else if(type === 'city') {
 			const cityid = tag.dataset.cityid,
 				  childs = city_data[cityid].childs,
-				  fids = get_fids(tag,cityid);
-			if(childs){
+				  fids = get_fids(tag,cityid),
+				  optional_index = crt_ipt.opitions.optional_index;
+			// optional_index 如果存在，限制用户可选择层级
+			// optional_index 不存在，默认可无限向下选择子数据
+			if(childs && (!optional_index || fids.length < optional_index)){
 				list_dom.innerHTML = create_list(childs,false,JSON.stringify(fids))	
 			}else{
 				const { dom, opitions } = crt_ipt;
@@ -106,7 +109,7 @@ const init_event = function() {
 					opitions.set.bind(crt_ipt)(false,fids)
 				}else{
 					dom.value = fids_chinese(fids).join('-');
-					dom.dataset.cityid = fids.join('-');	
+					dom.dataset.cityid = fids[fids.length - 1];	
 				}
 				hide()
 			}

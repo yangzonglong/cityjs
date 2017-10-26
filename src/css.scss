@@ -3,7 +3,7 @@ $color: #FF8800;
 .zl_ct {
    position: absolute;
    display: none;
-   width: 400px;
+   width: 480px;
    border: solid 1px #DDD;
    z-index: 1;
    background: #FFF;
@@ -75,6 +75,9 @@ $color: #FF8800;
                margin: 10px 10px 0 10px;
                font-size: 14px;
                color: $color;
+            }
+            &:last-child {
+                width: 420px;
             }
         }
     }
