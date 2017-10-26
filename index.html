@@ -22,6 +22,8 @@
 	<body>
 		<input id="ipt1" value="上海@嘉定区" style="margin-bottom: 100px;" />
 		<input id="ipt2" value="上海-嘉定区" style="margin-bottom: 100px;" />
+		<br  />
+		<input id="ipt3" style="margin-bottom: 100px;" />
 		<script type="text/javascript" src="dist/city.min.js"></script>
 		<script>
 			const init_data = {
@@ -94,6 +96,42 @@
 					}
 				}
 			})
+			
+			// 高级使用 多选城市
+			const arr = [];
+			new Zlcity('#ipt3', {
+				/*
+				 * 可选层级
+				 */
+				optional_index: 1,
+				/*
+				 *是否支持多选
+				 * 注意多选模式下, 必须定义set回调 处理选择逻辑
+				 */
+				is_checkbox: true,
+				set: function(is_ready,ids) {
+					const dom = this.dom,
+						  that = this;
+					if(!is_ready){
+						const id = ids[0];
+						const some = arr.filter(function(item){
+							return item == id
+						})
+						if(some.length){ // 该城市已存在,去除该城市
+							arr.splice(arr.indexOf(id),1)
+						}else{ // 没有该城市 添加
+							arr.push(id)
+						}
+						dom.dataset.cityid = arr.join(',');
+					    dom.value = arr.map(function(item){
+					    		return that.fids_chinese(item).join('')
+					    }).join(',')
+					}else{
+						
+					}
+				}
+			})
+			
 		</script>
 	</body>
 

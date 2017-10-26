@@ -73,9 +73,8 @@ const bind_event = function() {
 }
 
 class Zlcity {
-	constructor(id, opitions = {
-		xy: handle_xy
-	}) {
+	constructor(id, opitions = {}) {
+		if(!opitions.xy){opitions.xy = handle_xy}
 		const dom = get_dom(id),
 			offset = get_offset(dom),
 			value = dom.value,

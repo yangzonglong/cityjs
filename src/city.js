@@ -79,7 +79,7 @@ const fids_chinese = function(fids){
 	if(Array.isArray(fids)){
 		return fids.map(id => city_data[id].name)
 	}
-	return [city_data[fids]]
+	return [city_data[fids].name]
 }
 
 // 绑定事件
@@ -97,7 +97,7 @@ const init_event = function() {
 			const cityid = tag.dataset.cityid,
 				  childs = city_data[cityid].childs,
 				  fids = get_fids(tag,cityid),
-				  optional_index = crt_ipt.opitions.optional_index;
+				  {is_checkbox,optional_index} = crt_ipt.opitions;
 			// optional_index 如果存在，限制用户可选择层级
 			// optional_index 不存在，默认可无限向下选择子数据
 			if(childs && (!optional_index || fids.length < optional_index)){
@@ -111,6 +111,9 @@ const init_event = function() {
 					dom.value = fids_chinese(fids).join('-');
 					dom.dataset.cityid = fids[fids.length - 1];	
 				}
+			}
+			// 非多选模式,直接关闭控件
+			if(!is_checkbox && !(childs && childs.length)){
 				hide()
 			}
 		}
