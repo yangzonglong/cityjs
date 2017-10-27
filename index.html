@@ -84,11 +84,12 @@
 				 * is_ready 用于处理 value值存在但自定义值不存在，这种情况会出现一些问题,chrome opera 浏览器后退会出现这种情况
 				 * ids 为用户选择的城市id，数组类型，从父到子
 				 */
-				set: function(is_ready,ids) {
+				set: function(is_ready,ids,hide) {
 					const dom = this.dom;
 					if(!is_ready){
 						dom.dataset.abcd = ids[ids.length - 1];
 						dom.value = this.fids_chinese(ids).join('@');
+						hide()
 					}else{ // 浏览器回退
 						const values = dom.value.split('@');
 						const ids = this.ids(values);
@@ -104,12 +105,7 @@
 				 * 可选层级
 				 */
 				optional_index: 1,
-				/*
-				 *是否支持多选
-				 * 注意多选模式下, 必须定义set回调 处理选择逻辑
-				 */
-				is_checkbox: true,
-				set: function(is_ready,ids) {
+				set: function(is_ready,ids,hide) {
 					const dom = this.dom,
 						  that = this;
 					if(!is_ready){

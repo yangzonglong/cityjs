@@ -106,15 +106,12 @@ const init_event = function() {
 				const { dom, opitions } = crt_ipt;
 				const fids = get_fids(tag,cityid);
 				if(opitions.set){ // 指定了回调
-					opitions.set.bind(crt_ipt)(false,fids)
+					opitions.set.bind(crt_ipt)(false,fids,hide)
 				}else{
 					dom.value = fids_chinese(fids).join('-');
-					dom.dataset.cityid = fids[fids.length - 1];	
+					dom.dataset.cityid = fids[fids.length - 1];
+					hide()
 				}
-			}
-			// 非多选模式,直接关闭控件
-			if(!is_checkbox && !(childs && childs.length)){
-				hide()
 			}
 		}
 	})
