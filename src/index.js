@@ -77,7 +77,7 @@ class Zlcity {
 		if(!opitions.xy){opitions.xy = handle_xy}
 		const dom = get_dom(id),
 			offset = get_offset(dom),
-			value = dom.value,
+			value = dom.value || opitions.default_val,
 			result = opitions.xy(offset.x, offset.y + dom.offsetHeight);
 		this.x = result.x;
 		this.y = result.y;
@@ -85,15 +85,20 @@ class Zlcity {
 		this.opitions = opitions;
 		bind_event.bind(this)();
 		// chrome opera 浏览器后退会刷新页面并保留表单数据，但不会保留自定义数据
+		// default_val 用户设置默认值
 		if(value) {
-			const ids = this.ids(dom.value.split('-'));
 			// 自定义输出的情况，自动调用set一次
 			// 这种情况下，需要在set里手动设置城市id
 			if(opitions.set) {
-				opitions.set.bind(this)(true, ids)
+				opitions.set.bind(this)(true, value)
 			} else {
+				const ids = this.ids(value.split('-'));
 				// 默认输出，自动设置cityid
-				dom.dataset.cityid = ids[ids.length-1]
+				dom.dataset.cityid = ids[ids.length-1];
+				// 设置默认值 不会像 浏览器回退 自动记录值，这里需要手动设置
+				if(!dom.value && value){
+					dom.value = value
+				}
 			}
 		}
 	}

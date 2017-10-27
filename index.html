@@ -20,8 +20,8 @@
 	</head>
 
 	<body>
-		<input id="ipt1" value="上海@嘉定区" style="margin-bottom: 100px;" />
-		<input id="ipt2" value="上海-嘉定区" style="margin-bottom: 100px;" />
+		<input id="ipt1" style="margin-bottom: 100px;" />
+		<input id="ipt2" style="margin-bottom: 100px;" />
 		<br  />
 		<input id="ipt3" style="margin-bottom: 100px;" />
 		<script type="text/javascript" src="dist/city.min.js"></script>
@@ -62,10 +62,14 @@
 			Zlcity.init_data(init_data)
 			
 			// 基本使用
-			new Zlcity(document.querySelector('#ipt2'))
-			
+			new Zlcity(document.querySelector('#ipt2'),{
+				default_val: '上海-嘉定区'
+			})
+		
 			// 高级使用
 			new Zlcity('#ipt1', {
+				// 默认城市
+				default_val: '上海@嘉定区',
 				/*
 				 * 可选层级
 				 */
@@ -91,9 +95,10 @@
 						dom.value = this.fids_chinese(ids).join('@');
 						hide()
 					}else{ // 浏览器回退
-						const values = dom.value.split('@');
-						const ids = this.ids(values);
-						dom.dataset.abcd = ids[ids.length - 1]
+						dom.value = ids;
+						const values = ids.split('@');
+                        const _id = this.ids(values);
+						dom.dataset.abcd = _id[_id.length - 1]
 					}
 				}
 			})
