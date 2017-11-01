@@ -1,7 +1,7 @@
 .zl_ct {
   position: absolute;
   display: none;
-  width: 480px;
+  width: 570px;
   border: solid 1px #DDD;
   z-index: 1;
   background: #FFF; }
@@ -14,11 +14,13 @@
   line-height: 40px;
   font-size: 14px; }
   .zl_ct_hd a {
+    position: relative;
     float: left;
     display: block;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #333; }
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #555;
+    font-weight: bold; }
     .zl_ct_hd a span {
       display: none; }
   .zl_ct_hd .zl_on {
@@ -53,26 +55,33 @@
       z-index: 1; }
 
 .zl_ct_mn {
-  border-top: solid 1px #DDD;
+  border-top: solid 2px #DDD;
   padding: 0 10px 10px 10px;
   margin-top: -1px;
   line-height: 20px;
-  font-size: 12px; }
+  font-size: 14px; }
   .zl_ct_mn > div {
     overflow: hidden; }
     .zl_ct_mn > div p {
       float: left; }
       .zl_ct_mn > div p:first-child {
-        margin: 10px 10px 0 10px;
-        font-size: 14px;
-        color: #FF8800; }
+        margin-top: 10px;
+        width: 80px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #FF8800;
+        text-align: center; }
       .zl_ct_mn > div p:last-child {
-        width: 420px; }
+        width: 450px; }
   .zl_ct_mn a {
     display: inline-block;
     margin-top: 10px;
     padding-left: 5px;
     padding-right: 5px;
-    color: #333; }
+    width: 90px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #666; }
     .zl_ct_mn a:hover {
       color: #FF8800; }

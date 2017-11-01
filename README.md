@@ -29,3 +29,12 @@ new Zlcity(document.querySelector('#ipt2'),opitons)
 | optional_index | number| 否 | 可选层级，默认只要有下级，有一直可选 |
 | set | function| 否 | 用于自定义输出格式 |
 
+更多示例请参数index.html文件
+
+## 数据修改，源码修改
+```
+git clone https://github.com/yangzonglong/cityjs
+cd cityjs 
+yarn
+yarn start
+```
