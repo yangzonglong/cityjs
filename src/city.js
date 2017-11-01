@@ -14,10 +14,12 @@ const create_menu = function(crt_key) {
 	if(cache[crt_key]) return cache[crt_key];
 	let str = '';
 	for(let key in init_data) {
-		str += `<a ${crt_key === key ? 'class="zl_on"':''} 
+		// 如果指定了className, 我们插入个div标签该样式等于指定的className, 用户可以随意定制该样式
+		const child = init_data[key].className ? `<div class="${init_data[key].className}"></div>` :'';
+		str += `<a ${crt_key === key ? 'class=zl_on' : ''}
 			href='javascript:;'
 			data-key='${key}' 
-			data-type='menu'>${key}<span></span></a>`
+			data-type='menu'>${key}<span></span>${child}</a>`
 	}
 	return cache[crt_key] = str
 }
