@@ -59,6 +59,12 @@
 				}
 			}
 			
+			var a = [];
+			for(var k in init_data){
+				init_data[k].childs.forEach(function(item){
+					a.push(item)
+				})
+			}
 			
 			Zlcity.init_data(init_data)
 			
